@@ -1,0 +1,19 @@
+{
+    "name": "branchonline/yii2-joyride",
+    "description": "Yii2 Joyride wrapper.",
+    "authors": [
+        {
+            "name": "Jap Mul",
+            "email": "jap@branchonline.nl"
+        }
+    ],
+		"minimum-stability": "dev",	
+    "require": {
+			"php": ">=5.4.0",
+		},
+		"autoload"" {
+			"psr-4": {
+				"branchonline\\joyride\\": ""
+			}
+		}
+}

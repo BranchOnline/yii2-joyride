@@ -82,8 +82,10 @@ class Joyride extends InputWidget {
                     $this->item_options, ArrayHelper::getValue($item, 'options', []), ['data-id' => $item['target_id']]
             );
 
-            $content = Html::tag('h4', $item['header']) . $item['content'];
-            $collection[] = Html::tag('li', $content, $options);
+            $header = Html::tag('h4', $item['header']);
+            $content = Html::tag('p', $item['content']);
+            
+            $collection[] = Html::tag('li', $header . $content, $options);
         }
         return implode('', $collection);
     }

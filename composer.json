@@ -7,13 +7,13 @@
             "email": "jap@branchonline.nl"
         }
     ],
-		"minimum-stability": "dev",	
+    "minimum-stability": "dev",
     "require": {
-			"php": ">=5.4.0"
-		},
-		"autoload": {
-			"psr-4": {
-				"branchonline\\joyride\\": ""
-			}
-		}
+        "php": ">=5.4.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "branchonline\\joyride\\": "src/"
+        }
+    }
 }

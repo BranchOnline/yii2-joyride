@@ -44,17 +44,33 @@ class Joyride extends InputWidget {
         parent::init();
         $view = $this->getView();
         JoyrideAsset::register($view);
-        
+
+        if(isset($this->joyride_options['cookieMonster']) && $this->joyride_options['cookieMonster'] === true) {
+            $this->publishAndRegisterFile('@vendor/branchonline/yii2-joyride/src/assets/jquery.cookie.js', ['depends' => JoyrideAsset::className()]);
+        }
         
         $joyride_options_strings = [];
         $this->joyride_options['autoStart'] = 'true';
         foreach($this->joyride_options as $k => $v) {
-            $joyride_options_strings[] = $k . ': "' . $v . '"';
+            if(is_bool($v)) {
+                $value = $v ? 'true' : 'false';
+            } else {
+                $value = "'" . $v . "'";
+            }
+            $joyride_options_strings[] = $k . ': ' . $value;
         }
         
         $view->registerJs('console.log($("#' . $this->getId() . '")); $("#' . $this->getId() . '").joyride({
              '.  implode(', ', $joyride_options_strings).'
         });');
+    }
+
+    public function publishAndRegisterFile($file, $options = []) {
+        $publish_info = Yii::$app->getAssetManager()->publish($file);
+
+        if(isset($publish_info[1])) {
+            $this->getView()->registerJsFile($publish_info[1], $options);
+        }
     }
 
     public function run() {
